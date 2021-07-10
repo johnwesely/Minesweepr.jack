@@ -41,7 +41,7 @@ class Main {
     let k = Keyboard.keyPressed();
 
     if ((k > 129) & (k < 134)) {
-      do b.moveCursor(k);
+      do Board.moveCursor(k);
     }
     if (k = 128) {
       do b.click();

@@ -120,11 +120,13 @@ class Board {
   // draws this board on screen
   method void draw() {
     var int i;
+    var int cursor;
     var Square current;
     var int x;
     var int y;
 
     let i = 0;
+    let cursor = Main.getCursor();
 
     while (i < 144) {
       let current = b[i];
@@ -136,7 +138,7 @@ class Board {
       if (~(current.getClicked())) {
         do Draw.unclicked(x, y);
       }
-      if (current.getCursor()) {
+      if (i = cursor) {
         do Draw.cursor(x, y);
       }
       let i = (i + 1);
@@ -145,23 +147,7 @@ class Board {
   }
   
   // move cursor
-  method void moveCursor(int k) {
-    var Square current;
-    var int cursor;
-
-    let cursor = Main.getCursor();
-    let current = b[cursor];
-
-    do current.setCursorFalse(); 
-    do Board.cursorMath(k);
-
-    let cursor = Main.getCursor();
-    let current = b[cursor];
-    do current.setCursorTrue();
-    return;
-  }
-
-  function void cursorMath(int k) {
+  function void moveCursor(int k) {
     var int cursor;
     let cursor = Main.getCursor();
 
@@ -170,7 +156,7 @@ class Board {
       return;
     }
     if (k = 130) {
-      do Main.setCursor(cursor+11);
+      do Main.setCursor(cursor-1);
       return;
     }
     if ((k = 131) & (cursor < 12)) {
@@ -178,7 +164,7 @@ class Board {
       return;
     }
     if (k = 131) {
-      do Main.setCursor(cursor-1);
+      do Main.setCursor(cursor-12);
       return;
     }
     if ((k = 132) & (cursor = 143)) {

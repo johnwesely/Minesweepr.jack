@@ -391,11 +391,13 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Board.draw 4
+function Board.draw 5
 push argument 0
 pop pointer 0
 push constant 0
 pop local 0
+call Main.getCursor 0
+pop local 1
 label WHILE_EXP0
 push local 0
 push constant 144
@@ -407,41 +409,42 @@ push this 0
 add
 pop pointer 1
 push that 0
-pop local 1
-push local 1
-call Square.getX 1
 pop local 2
-push local 1
-call Square.getY 1
+push local 2
+call Square.getX 1
 pop local 3
-push local 1
+push local 2
+call Square.getY 1
+pop local 4
+push local 2
 call Square.getFlagged 1
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push local 2
 push local 3
+push local 4
 call Draw.flagged 2
 pop temp 0
 label IF_FALSE0
-push local 1
+push local 2
 call Square.getClicked 1
 not
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push local 2
 push local 3
+push local 4
 call Draw.unclicked 2
 pop temp 0
 label IF_FALSE1
+push local 0
 push local 1
-call Square.getCursor 1
+eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push local 2
 push local 3
+push local 4
 call Draw.cursor 2
 pop temp 0
 label IF_FALSE2
@@ -453,37 +456,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Board.moveCursor 2
-push argument 0
-pop pointer 0
-call Main.getCursor 0
-pop local 1
-push local 1
-push this 0
-add
-pop pointer 1
-push that 0
-pop local 0
-push local 0
-call Square.setCursorFalse 1
-pop temp 0
-push argument 1
-call Board.cursorMath 1
-pop temp 0
-call Main.getCursor 0
-pop local 1
-push local 1
-push this 0
-add
-pop pointer 1
-push that 0
-pop local 0
-push local 0
-call Square.setCursorTrue 1
-pop temp 0
-push constant 0
-return
-function Board.cursorMath 1
+function Board.moveCursor 1
 call Main.getCursor 0
 pop local 0
 push argument 0
@@ -509,8 +482,8 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push local 0
-push constant 11
-add
+push constant 1
+sub
 call Main.setCursor 1
 pop temp 0
 push constant 0
@@ -541,7 +514,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push local 0
-push constant 1
+push constant 12
 sub
 call Main.setCursor 1
 pop temp 0

@@ -3,7 +3,7 @@ class Square {
   // x and y coordinates of square
   field int x, y, adjacent_mines;
   // booleans for status of square
-  field boolean mine, clicked, flagged, cursor; 
+  field boolean mine, clicked, flagged; 
 
   constructor Square new(int a, int b) {
     let x = a;
@@ -12,7 +12,6 @@ class Square {
     let mine = false;
     let clicked = false;
     let flagged = false; 
-    let cursor = false;
     return this;
   }
 
@@ -78,9 +77,6 @@ class Square {
   method boolean getFlagged() {
     return flagged;
   }
-  method boolean getCursor() {
-    return cursor;
-  }
 
   // setters
   method void setMine() {
@@ -92,15 +88,5 @@ class Square {
     let adjacent_mines = n;
     return;
   }
-  
-  method void setCursorTrue() {
-    let cursor = true;
-    return;
-  }
-
-  method void setCursorFalse() {
-    let cursor = false;
-    return;
-  } 
 }
 
