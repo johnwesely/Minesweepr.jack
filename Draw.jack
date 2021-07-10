@@ -1,0 +1,128 @@
+// functions for drawing game to screen
+class Draw {
+  static int cat;
+  // functions for drawing squares 
+  // x and y are upper right origin points for square
+  function void cursor(int x, int y) {
+    do Screen.drawRectangle(x, y, (x+19), (y+19));
+    return;
+  }
+
+  function void clicked(int x, int y) {
+    do Screen.drawLine(x, y, (x+19), y);
+    do Screen.drawLine(x, y, x, (y+19));
+    do Screen.drawLine(x, (y+19), (x+19), (y+19));
+    do Screen.drawLine((x+19), y, (x+19), (y+19));
+    return;
+  }
+
+  function void unclicked(int x, int y) {
+    do Screen.drawLine(x, y, (x+19), y);
+    do Screen.drawLine(x, y, x, (y+19)); 
+    do Screen.drawRectangle((x+1), (y+17), (x+16), (y+19));
+    do Screen.drawRectangle((x+17), (y+1), (x+19), (y+19));
+    do Screen.drawRectangle((x+2), (y+2), (x+3), (y+3));
+    return;
+  }
+
+  function void flagged(int x, int y) {
+    do Draw.unclicked(x, y);
+    do Screen.setColor(false);
+    do Screen.drawRectangle((x+2), (y+2), (x+3), (y+3));
+    do Screen.setColor(true);
+    do Screen.drawLine((x+4), (y+15), (x+14), (y+15));
+    do Screen.drawLine((x+5), (y+14), (x+3), (y+14));
+    do Screen.drawLine((x+9), (y+2), (x+9), (y+13));
+    do Screen.drawLine((x+8), (y+3), (x+5), (y+6));
+    do Screen.drawLine((x+6), (y+7), (x+8), (y+9));
+    return;
+  }  
+
+  function void mine(int x, int y) {
+    do Draw.clicked(x,y);
+    do Screen.drawRectangle((x+7), (y+3), (x+7), (y+16));
+    do Screen.drawRectangle((x+12), (y+3), (x+12), (7+16));
+    do Screen.drawRectangle((x+3), (y+7), (x+16), (y+7));
+    do Screen.drawRectangle((x+3), (y+12), (x+16), (y+12));
+    do Screen.drawRectangle((x+8), (y+5), (x+11), (y+5));
+    do Screen.drawRectangle((x+8), (y+14), (x+11), (y+14));
+    do Screen.drawRectangle((x+5), (y+8), (x+5), (y+11));
+    do Screen.drawRectangle((x+14), (y+8), (x+14), (y+11));
+    do Screen.drawRectangle((x+9), (y+9), (x+10), (y+10));
+    do Screen.drawPixel((x+6), (y+6));
+    do Screen.drawPixel((x+13), (y+6));
+    do Screen.drawPixel((x+6), (y+13));
+    do Screen.drawPixel((x+13), (y+13));
+    return;
+  }
+
+  function void clickedMine(int x, int y) {
+    do Draw.mine(x,y);
+    do Screen.drawLine((x+0), (y+19), (x+19), (y+0));
+    return;
+  }
+
+  function void one(int x, int y) {
+    do Draw.clicked(x, y);
+    do Screen.drawLine((x+7), (y+5), (x+9), (y+3));
+    do Screen.drawLine((x+10), (y+3), (x+10), (y+15));
+    do Screen.drawLine((x+6), (y+16), (x+12), (y+16));
+    return;
+  }
+
+  function void two(int x,  int y) {
+    do Draw.clicked(x, y); 
+    do Screen.drawLine((x+5), (y+5), (x+6), (y+4));
+    do Screen.drawLine((x+7), (y+3), (x+11), (y+3));
+    do Screen.drawLine((x+12), (y+4), (x+14), (y+6));
+    do Screen.drawLine((x+13), (y+7), (x+5), (y+15));
+    do Screen.drawLine((x+5), (y+16), (x+14), (y+16));
+    return;
+  }
+
+  function void three(int x, int y) {
+    do Draw.clicked(x, y);
+    do Screen.drawLine((x+5), (y+3), (x+14), (y+3));
+    do Screen.drawLine((x+14), (y+4), (x+14), (y+15));
+    do Screen.drawLine((x+10), (y+9), (x+13), (y+9));
+    do Screen.drawLine((x+5), (y+16), (x+13), (y+16));
+    return;
+  }
+
+  function void four(int x, int y) {
+    do Draw.clicked(x, y);
+    do Screen.drawLine((x+6), (y+3), (x+6), (y+10));
+    do Screen.drawLine((x+7), (y+10), (x+12), (y+10));
+    do Screen.drawLine((x+13), (y+3), (x+13), (y+16));
+    return; 
+  }
+
+  function void five(int x, int y) {
+    do Draw.clicked(x, y);
+    do Screen.drawLine((x+5), (y+3), (x+14), (y+3));
+    do Screen.drawLine((x+5), (y+4), (x+5), (y+8));
+    do Screen.drawLine((x+6), (y+9), (x+14), (y+9));
+    do Screen.drawLine((x+14), (y+10), (x+14), (y+15));
+    do Screen.drawLine((x+5), (y+16), (x+14), (y+16));
+    return;
+  }
+
+  function void six(int x, int y) {
+    do Draw.five(x, y);
+    do Screen.drawLine((x+5), (y+10), (x+5), (y+15));
+    return;
+  }
+
+  function void seven(int x, int y) {
+    do Draw.clicked(x, y);
+    do Screen.drawLine((x+5), (y+16), (x+14), (y+4));
+    do Screen.drawLine((x+5), (y+4), (x+14), (y+4));
+    return;
+  }
+    
+  function void eight(int x, int y) {
+    do Draw.six(x, y);
+    do Screen.drawLine((x+14), (y+4), (x+14), (y+8));
+    return;
+  }
+}

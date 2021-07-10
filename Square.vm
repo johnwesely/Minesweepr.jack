@@ -1,0 +1,162 @@
+function Square.new 0
+push constant 7
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push constant 0
+pop this 2
+push constant 0
+pop this 3
+push constant 0
+pop this 4
+push constant 0
+pop this 5
+push constant 0
+pop this 6
+push pointer 0
+return
+function Square.placeMine 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+pop this 3
+push constant 0
+return
+function Square.click 1
+push argument 0
+pop pointer 0
+push this 3
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Main.lose 0
+pop temp 0
+label IF_FALSE0
+push this 2
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+call Main.getBoard 0
+pop local 0
+push local 0
+call Main.safeSquares 1
+pop local 0
+push local 0
+call Main.setBoard 1
+pop temp 0
+label IF_FALSE1
+push constant 0
+not
+pop this 4
+push constant 0
+return
+function Square.flag 0
+push argument 0
+pop pointer 0
+push this 5
+push this 3
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 5
+call Main.incMinesLeft 0
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push this 5
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+pop this 5
+push constant 0
+return
+label IF_FALSE1
+push this 3
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+not
+pop this 5
+call Main.decMinesLeft 0
+pop temp 0
+push constant 0
+return
+goto IF_END2
+label IF_FALSE2
+push constant 0
+not
+pop this 5
+push constant 0
+return
+label IF_END2
+function Square.getMine 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function Square.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Square.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Square.getAdjacentMines 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function Square.getClicked 0
+push argument 0
+pop pointer 0
+push this 4
+return
+function Square.getFlagged 0
+push argument 0
+pop pointer 0
+push this 5
+return
+function Square.setMine 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+pop this 3
+push constant 0
+return
+function Square.setAdjacentMines 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 2
+push constant 0
+return
+function Square.setCursorTrue 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+pop this 6
+push constant 0
+return
+function Square.setCursorFalse 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 6
+push constant 0
+return

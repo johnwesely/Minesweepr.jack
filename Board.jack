@@ -1,0 +1,198 @@
+// functions and methods for Board datatype, an array of Squares 
+class Board {
+  // b is a 144 length array of Squares representing game board
+  field Array b;
+
+  // creates new board
+  constructor Board new() {
+    let b = Board.init();
+    do placeMines();
+    do adjacentMines();
+    do draw();
+    return this;
+  }
+  
+  // populates 144 length array with squares. 
+  function Board init() {
+    var int i;
+    var int x_cord;
+    var int y_cord;
+    var Array board;
+
+    let i = 0;
+    let board = Array.new(144);
+
+    while (i < 144) {
+      let x_cord = (136 + (20 * (Maths.mod(i, 12))));
+      let y_cord = (8 + (20 * (i / 12)));
+      let board[i] = Square.new(x_cord, y_cord);
+      let i = (i +1);
+    }
+
+    return board;
+  } 
+
+  // randomly places Main.mines_left mines on board
+  method void placeMines() {
+    var int i;
+    var int rand;
+    var Square current;
+
+    let i = 0;
+    let rand = 0;
+
+    while (i < Main.getMinesLeft()) {
+      let rand = Maths.randRange(143);
+      let current = b[rand];
+      // Only place mine if square is empyty
+      if (~ current.getMine()) {
+        do current.setMine();
+        let i = (i + 1);
+      }   
+    }
+    
+    return;
+  }
+
+  // Sets adjacement mines field for each square
+  method void adjacentMines() {
+    // mines in adjacent squares
+    var int mine_count;
+    // square indices for surrounding squares
+    var int ul, um, ur, ml, mr, ll, lm, lr;
+    // board[i]'s row
+    var int cr;
+    //current square
+    var int i; 
+    var Square current;
+    let i = 0;
+    
+    while (i < 144) {
+      let mine_count = 0; 
+      let cr = (i / 12);
+      // initialize indices for current square
+      let ul = (i - 13); let um = (i - 12); let ur = (i - 11);
+      let ml = (i - 1); let mr = (i + 1);
+      let ll = (i + 11); let lm = (i + 12); let lr = (i + 13);
+      
+      //if square is adjacent to current and has a mine increment mine_count
+      if ((ul > -1) & ((ul / 12) = (cr - 1))) {
+        let current = b[ul];
+        if (current.getMine()) {let mine_count = (mine_count + 1);}
+      }
+      if (um > -1) {
+        let current = b[um];
+        if (current.getMine()) {let mine_count = (mine_count + 1);}
+      }
+      if ((ur > -1) & ((ul / 12) = (cr - 1))) {
+        let current = b[ur];
+        if (current.getMine()) {let mine_count = (mine_count + 1);}
+      }
+      if ((ml / 12) = cr) {
+        let current = b[ml];
+        if (current.getMine()) {let mine_count = (mine_count + 1);}
+      }
+      if ((mr / 12) = cr) {
+        let current = b[mr];
+        if (current.getMine()) {let mine_count = (mine_count + 1);}
+      }
+      if ((ll < 144) & ((ll / 12) = (cr + 1))) {
+        let current = b[ll];
+        if (current.getMine()) {let mine_count = (mine_count + 1);}
+      }
+      if (lm < 144) {
+        let current = b[lm];
+        if (current.getMine()) {let mine_count = (mine_count + 1);}
+      }
+      if ((lr < 144) & ((lr / 12) = (cr + 1))) {
+        let current = b[lr];
+        if (current.getMine()) {let mine_count = (mine_count + 1);}
+      }
+
+      //set adjacent_mines
+      let current = b[i];
+      do current.setAdjacentMines(mine_count);
+      let i = (i + 1);
+    }
+    return;
+  }
+
+  // draws this board on screen
+  method void draw() {
+    var int i;
+    var Square current;
+    var int x;
+    var int y;
+
+    let i = 0;
+
+    while (i < 144) {
+      let current = b[i];
+      let x = current.getX();
+      let y = current.getY();
+      if (current.getFlagged()) {
+        do Draw.flagged(x, y);
+      }
+      if (~(current.getClicked())) {
+        do Draw.unclicked(x, y);
+      }
+      let i = (i + 1);
+    }
+    return;
+  }
+  
+  // move cursor
+  method void moveCursor(int k) {
+    var square current;
+    var int cursor;
+
+    let cursor = Main.getCursor();
+    let current = b[cursor];
+
+    do current.setCursorFalse(); 
+    do Board.cursorMath(k);
+
+    let current = b[cursor];
+    do current.setCursorTrue();
+    return;
+  }
+
+  function void cursorMath(int k) {
+    var int cursor;
+    let cursor = Main.getCursor();
+
+    if ((k = 130) & (cursor = 0)) {
+      do Main.setCursor(143);
+      return;
+    }
+    if (k = 130) {
+      do Main.setCursor(cursor-1);
+      return;
+    }
+    if ((k = 131) & (cursor < 16)) {
+      do Main.setCursor(cursor+131);
+      return;
+    }
+    if (k = 131) {
+      do Main.setCursor(cursor-16);
+      return;
+    }
+    if ((k = 132) & (cursor = 143)) {
+      do Main.setCursor(0);
+      return;
+    }
+    if (k = 132) {
+      do Main.setCursor(cursor+1);
+      return;
+    }
+    if ((k = 132) & (cursor > 131)) {
+      do Main.setCursor(131-cursor);
+      return;
+    }
+    if (k = 132) {
+      do Main.setCursor(cursor+16);
+      return;
+    }
+    return;
+  }
+}

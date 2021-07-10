@@ -1,0 +1,793 @@
+function Draw.cursor 0
+push argument 0
+push argument 1
+push argument 0
+push constant 19
+add
+push argument 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Draw.clicked 0
+push argument 0
+push argument 1
+push argument 0
+push constant 19
+add
+push argument 1
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push argument 1
+push argument 0
+push argument 1
+push constant 19
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push argument 1
+push constant 19
+add
+push argument 0
+push constant 19
+add
+push argument 1
+push constant 19
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 19
+add
+push argument 1
+push argument 0
+push constant 19
+add
+push argument 1
+push constant 19
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.unclicked 0
+push argument 0
+push argument 1
+push argument 0
+push constant 19
+add
+push argument 1
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push argument 1
+push argument 0
+push argument 1
+push constant 19
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 1
+add
+push argument 1
+push constant 17
+add
+push argument 0
+push constant 16
+add
+push argument 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 17
+add
+push argument 1
+push constant 1
+add
+push argument 0
+push constant 19
+add
+push argument 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 2
+add
+push argument 1
+push constant 2
+add
+push argument 0
+push constant 3
+add
+push argument 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+function Draw.flagged 0
+push argument 0
+push argument 1
+call Draw.unclicked 2
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push constant 2
+add
+push argument 1
+push constant 2
+add
+push argument 0
+push constant 3
+add
+push argument 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push constant 4
+add
+push argument 1
+push constant 15
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 15
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 14
+add
+push argument 0
+push constant 3
+add
+push argument 1
+push constant 14
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 9
+add
+push argument 1
+push constant 2
+add
+push argument 0
+push constant 9
+add
+push argument 1
+push constant 13
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 8
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 6
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 6
+add
+push argument 1
+push constant 7
+add
+push argument 0
+push constant 8
+add
+push argument 1
+push constant 9
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.mine 0
+push argument 0
+push argument 1
+call Draw.clicked 2
+pop temp 0
+push argument 0
+push constant 7
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 7
+add
+push argument 1
+push constant 16
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 12
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 12
+add
+push constant 7
+push constant 16
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 3
+add
+push argument 1
+push constant 7
+add
+push argument 0
+push constant 16
+add
+push argument 1
+push constant 7
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 3
+add
+push argument 1
+push constant 12
+add
+push argument 0
+push constant 16
+add
+push argument 1
+push constant 12
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 8
+add
+push argument 1
+push constant 5
+add
+push argument 0
+push constant 11
+add
+push argument 1
+push constant 5
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 8
+add
+push argument 1
+push constant 14
+add
+push argument 0
+push constant 11
+add
+push argument 1
+push constant 14
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 8
+add
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 11
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 8
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 11
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 9
+add
+push argument 1
+push constant 9
+add
+push argument 0
+push constant 10
+add
+push argument 1
+push constant 10
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 6
+add
+push argument 1
+push constant 6
+add
+call Screen.drawPixel 2
+pop temp 0
+push argument 0
+push constant 13
+add
+push argument 1
+push constant 6
+add
+call Screen.drawPixel 2
+pop temp 0
+push argument 0
+push constant 6
+add
+push argument 1
+push constant 13
+add
+call Screen.drawPixel 2
+pop temp 0
+push argument 0
+push constant 13
+add
+push argument 1
+push constant 13
+add
+call Screen.drawPixel 2
+pop temp 0
+push constant 0
+return
+function Draw.clickedMine 0
+push argument 0
+push argument 1
+call Draw.mine 2
+pop temp 0
+push argument 0
+push constant 0
+add
+push argument 1
+push constant 19
+add
+push argument 0
+push constant 19
+add
+push argument 1
+push constant 0
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.one 0
+push argument 0
+push argument 1
+call Draw.clicked 2
+pop temp 0
+push argument 0
+push constant 7
+add
+push argument 1
+push constant 5
+add
+push argument 0
+push constant 9
+add
+push argument 1
+push constant 3
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 10
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 10
+add
+push argument 1
+push constant 15
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 6
+add
+push argument 1
+push constant 16
+add
+push argument 0
+push constant 12
+add
+push argument 1
+push constant 16
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.two 0
+push argument 0
+push argument 1
+call Draw.clicked 2
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 5
+add
+push argument 0
+push constant 6
+add
+push argument 1
+push constant 4
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 7
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 11
+add
+push argument 1
+push constant 3
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 12
+add
+push argument 1
+push constant 4
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 6
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 13
+add
+push argument 1
+push constant 7
+add
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 15
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 16
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 16
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.three 0
+push argument 0
+push argument 1
+call Draw.clicked 2
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 3
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 4
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 15
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 10
+add
+push argument 1
+push constant 9
+add
+push argument 0
+push constant 13
+add
+push argument 1
+push constant 9
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 16
+add
+push argument 0
+push constant 13
+add
+push argument 1
+push constant 16
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.four 0
+push argument 0
+push argument 1
+call Draw.clicked 2
+pop temp 0
+push argument 0
+push constant 6
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 6
+add
+push argument 1
+push constant 10
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 7
+add
+push argument 1
+push constant 10
+add
+push argument 0
+push constant 12
+add
+push argument 1
+push constant 10
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 13
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 13
+add
+push argument 1
+push constant 16
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.five 0
+push argument 0
+push argument 1
+call Draw.clicked 2
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 3
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 3
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 4
+add
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 8
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 6
+add
+push argument 1
+push constant 9
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 9
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 10
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 15
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 16
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 16
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.six 0
+push argument 0
+push argument 1
+call Draw.five 2
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 10
+add
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 15
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.seven 0
+push argument 0
+push argument 1
+call Draw.clicked 2
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 16
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 4
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push constant 5
+add
+push argument 1
+push constant 4
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 4
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return
+function Draw.eight 0
+push argument 0
+push argument 1
+call Draw.six 2
+pop temp 0
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 4
+add
+push argument 0
+push constant 14
+add
+push argument 1
+push constant 8
+add
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return

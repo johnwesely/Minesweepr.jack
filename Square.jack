@@ -1,0 +1,103 @@
+// Square datatype 
+class Square { 
+  // x and y coordinates of square
+  field int x, y, adjacent_mines;
+  // booleans for status of square
+  field boolean mine, clicked, flagged, cursor; 
+
+  constructor Square new(int a, int b) {
+    let x = a;
+    let y = b;
+    let adjacent_mines = 0;
+    let mine = false;
+    let clicked = false;
+    let flagged = false; 
+    let cursor = false;
+    return this;
+  }
+
+  // place mine in square
+  method void placeMine() {
+    let mine = true;
+    return;
+  }
+
+  // click square 
+  method void click() {
+    var Board b;
+    if (mine) {
+      do Main.lose();
+    }
+    if (adjacent_mines = 0) {
+      let b = (Main.getBoard());
+      let b = (Main.safeSquares(b));
+      do Main.setBoard(b);
+    }
+    let clicked = true;
+    return;
+  }
+
+  // flag or unflag square
+  method void flag() {
+    if (flagged & mine) {
+      let flagged = false;
+      do Main.incMinesLeft();
+      return;
+    }
+    if (flagged) {
+      let flagged = false;
+      return;
+    }
+    if (mine) {
+      let flagged = true;
+      do Main.decMinesLeft();
+      return;
+    }
+    else {
+      let flagged = true;
+      return;
+    }
+  }
+
+  // getters
+  method Boolean getMine() {
+    return mine;
+  }
+  method int getX() {
+    return x;
+  }
+  method int getY() {
+    return y;
+  }
+  method int getAdjacentMines() {
+    return adjacent_mines;
+  }
+  method boolean getClicked() {
+    return clicked;
+  }
+  method boolean getFlagged() {
+    return flagged;
+  }
+
+  // setters
+  method void setMine() {
+    let mine = true;
+    return;
+  }
+  
+  method void setAdjacentMines(int n) {
+    let adjacent_mines = n;
+    return;
+  }
+  
+  method void setCursorTrue() {
+    let cursor = true;
+    return;
+  }
+
+  method void setCursorFalse() {
+    let cursor = false;
+    return;
+  } 
+}
+
