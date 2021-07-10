@@ -19,7 +19,10 @@ if-goto WHILE_END0
 call Main.keyHandler 0
 pop temp 0
 push static 0
-call board.draw 1
+call Board.draw 1
+pop temp 0
+push constant 200
+call Sys.wait 1
 pop temp 0
 goto WHILE_EXP0
 label WHILE_END0
@@ -165,7 +168,7 @@ goto IF_FALSE0
 label IF_TRUE0
 push static 0
 push local 0
-call board.moveCursor 2
+call Board.moveCursor 2
 pop temp 0
 label IF_FALSE0
 push local 0
@@ -175,7 +178,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push static 0
-call board.click 1
+call Board.click 1
 pop temp 0
 label IF_FALSE1
 push local 0
@@ -185,7 +188,7 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push static 0
-call board.flag 1
+call Board.flag 1
 pop temp 0
 label IF_FALSE2
 push constant 0

@@ -1,7 +1,7 @@
 // main class, top level class handles opertaion of minesweeper game
 class Main {
   // current instance of board class
-  static board b;
+  static Board b;
   // number of mines remaining, game ends when zero
   static int mines_left;
   // current cursor position
@@ -18,6 +18,7 @@ class Main {
     while (mines_left > -1) {
       do Main.keyHandler();
       do b.draw();
+      do Sys.wait(200);
     }
     
     return;

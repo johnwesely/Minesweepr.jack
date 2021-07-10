@@ -136,6 +136,9 @@ class Board {
       if (~(current.getClicked())) {
         do Draw.unclicked(x, y);
       }
+      if (current.getCursor()) {
+        do Draw.cursor(x, y);
+      }
       let i = (i + 1);
     }
     return;
@@ -143,7 +146,7 @@ class Board {
   
   // move cursor
   method void moveCursor(int k) {
-    var square current;
+    var Square current;
     var int cursor;
 
     let cursor = Main.getCursor();
@@ -152,6 +155,7 @@ class Board {
     do current.setCursorFalse(); 
     do Board.cursorMath(k);
 
+    let cursor = Main.getCursor();
     let current = b[cursor];
     do current.setCursorTrue();
     return;
@@ -166,15 +170,15 @@ class Board {
       return;
     }
     if (k = 130) {
-      do Main.setCursor(cursor-1);
+      do Main.setCursor(cursor+11);
       return;
     }
-    if ((k = 131) & (cursor < 16)) {
-      do Main.setCursor(cursor+131);
+    if ((k = 131) & (cursor < 12)) {
+      do Main.setCursor(cursor+132);
       return;
     }
     if (k = 131) {
-      do Main.setCursor(cursor-16);
+      do Main.setCursor(cursor-1);
       return;
     }
     if ((k = 132) & (cursor = 143)) {
@@ -185,14 +189,23 @@ class Board {
       do Main.setCursor(cursor+1);
       return;
     }
-    if ((k = 132) & (cursor > 131)) {
-      do Main.setCursor(131-cursor);
+    if ((k = 133) & (cursor > 131)) {
+      do Main.setCursor(cursor-132);
       return;
     }
-    if (k = 132) {
-      do Main.setCursor(cursor+16);
+    if (k = 133) {
+      do Main.setCursor(cursor+12);
       return;
     }
+    return;
+  }
+  
+
+  method void click() {
+    return;
+  }
+
+  method void flag() {
     return;
   }
 }

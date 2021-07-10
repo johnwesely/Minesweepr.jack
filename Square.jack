@@ -78,6 +78,9 @@ class Square {
   method boolean getFlagged() {
     return flagged;
   }
+  method boolean getCursor() {
+    return cursor;
+  }
 
   // setters
   method void setMine() {

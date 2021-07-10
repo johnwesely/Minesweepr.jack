@@ -130,6 +130,11 @@ push argument 0
 pop pointer 0
 push this 5
 return
+function Square.getCursor 0
+push argument 0
+pop pointer 0
+push this 6
+return
 function Square.setMine 0
 push argument 0
 pop pointer 0

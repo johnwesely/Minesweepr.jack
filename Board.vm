@@ -435,6 +435,16 @@ push local 3
 call Draw.unclicked 2
 pop temp 0
 label IF_FALSE1
+push local 1
+call Square.getCursor 1
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 2
+push local 3
+call Draw.cursor 2
+pop temp 0
+label IF_FALSE2
 push local 0
 push constant 1
 add
@@ -455,11 +465,13 @@ pop pointer 1
 push that 0
 pop local 0
 push local 0
-call square.setCursorFalse 1
+call Square.setCursorFalse 1
 pop temp 0
 push argument 1
 call Board.cursorMath 1
 pop temp 0
+call Main.getCursor 0
+pop local 1
 push local 1
 push this 0
 add
@@ -467,7 +479,7 @@ pop pointer 1
 push that 0
 pop local 0
 push local 0
-call square.setCursorTrue 1
+call Square.setCursorTrue 1
 pop temp 0
 push constant 0
 return
@@ -497,8 +509,8 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push local 0
-push constant 1
-sub
+push constant 11
+add
 call Main.setCursor 1
 pop temp 0
 push constant 0
@@ -508,14 +520,14 @@ push argument 0
 push constant 131
 eq
 push local 0
-push constant 16
+push constant 12
 lt
 and
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push local 0
-push constant 131
+push constant 132
 add
 call Main.setCursor 1
 pop temp 0
@@ -529,7 +541,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push local 0
-push constant 16
+push constant 1
 sub
 call Main.setCursor 1
 pop temp 0
@@ -567,7 +579,7 @@ push constant 0
 return
 label IF_FALSE5
 push argument 0
-push constant 132
+push constant 133
 eq
 push local 0
 push constant 131
@@ -576,8 +588,8 @@ and
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
-push constant 131
 push local 0
+push constant 132
 sub
 call Main.setCursor 1
 pop temp 0
@@ -585,18 +597,28 @@ push constant 0
 return
 label IF_FALSE6
 push argument 0
-push constant 132
+push constant 133
 eq
 if-goto IF_TRUE7
 goto IF_FALSE7
 label IF_TRUE7
 push local 0
-push constant 16
+push constant 12
 add
 call Main.setCursor 1
 pop temp 0
 push constant 0
 return
 label IF_FALSE7
+push constant 0
+return
+function Board.click 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Board.flag 0
+push argument 0
+pop pointer 0
 push constant 0
 return
