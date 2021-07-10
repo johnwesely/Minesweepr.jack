@@ -34,15 +34,26 @@ class Board {
 
   // randomly places Main.mines_left mines on board
   method void placeMines() {
-    var int i;
+    var int i ;
     var int rand;
+    var boolean n;
     var Square current;
 
     let i = 0;
     let rand = 0;
+    let n = false;
 
     while (i < Main.getMinesLeft()) {
-      let rand = Maths.randRange(143);
+      // let rand = Maths.randRange(143);
+      let rand = Maths.mod(Maths.rand(), 144);
+      if (n) {
+        let rand = Maths.mod((rand+Maths.randRange(144)), 144);
+        let n = false;
+      }
+      if (~n) {
+        let rand = Maths.mod((rand+Maths.randRange(69)), 144);
+        let n = true;
+      }
       let current = b[rand];
       // Only place mine if square is empyty
       if (~ current.getMine()) {
@@ -132,20 +143,87 @@ class Board {
       let current = b[i];
       let x = current.getX();
       let y = current.getY();
-      if (current.getFlagged()) {
-        do Draw.flagged(x, y);
-      }
-      if (~(current.getClicked())) {
-        do Draw.unclicked(x, y);
-      }
-      if (i = cursor) {
-        do Draw.cursor(x, y);
-      }
+
+      do Board.chooseDraw(x, y, i, cursor, current);
+
       let i = (i + 1);
     }
     return;
   }
   
+  // choose correct draw function and call it
+  function void chooseDraw(int x, int y, int i, int cursor, Square current) {
+      if (i = cursor) {
+        do Draw.cursor(x, y);
+        return;
+      }
+      if (current.getFlagged()) {
+        do Draw.flagged(x, y);
+        return;
+      }
+      if (~(current.getClicked())) {
+        do Draw.unclicked(x, y);
+        return;
+      }
+      if (current.getClicked() & current.getMine()) {
+        do Draw.mine(x, y);
+        return;
+      }  
+      if ((current.getClicked()) & (current.getAdjacentMines() = 1)) {
+        do Draw.one(x, y);
+        return;
+      }
+      if ((current.getClicked()) & (current.getAdjacentMines() = 2)) {
+        do Draw.two(x, y);
+        return;
+      }
+      if ((current.getClicked()) & (current.getAdjacentMines() = 3)) {
+        do Draw.three(x, y);
+        return;
+      }
+      if ((current.getClicked()) & (current.getAdjacentMines() = 4)) {
+        do Draw.four(x, y);
+        return;
+      }
+      if ((current.getClicked()) & (current.getAdjacentMines() = 5)) {
+        do Draw.five(x, y);
+        return;
+      }
+      if ((current.getClicked()) & (current.getAdjacentMines() = 6)) {
+        do Draw.six(x, y);
+        return;
+      }
+      if ((current.getClicked()) & (current.getAdjacentMines() = 7)) {
+        do Draw.seven(x, y);
+        return;
+      }
+      if ((current.getClicked()) & (current.getAdjacentMines() = 8)) {
+        do Draw.eight(x, y);
+        return;
+      }
+      if (current.getClicked()) {
+        do Draw.clicked(x, y);
+      }
+      return;
+    }
+
+  // click all squares
+  method void clickAll() {
+    var Square current;
+    var int i, x, y;
+
+    let i = 0;
+    while (i < 144) {
+      let current = b[i];
+      let x = current.getX();
+      let y = current.getY();
+      do Draw.clear(x,y);
+      do current.setClicked();
+      let i = (i + 1);
+    }
+    return;
+  }
+
   // move cursor
   function void moveCursor(int k) {
     var int cursor;
@@ -188,10 +266,24 @@ class Board {
   
 
   method void click() {
+    var int cursor;
+    var Square current;
+
+    let cursor = Main.getCursor();
+    let current = b[cursor];
+
+    do current.click();
     return;
   }
 
   method void flag() {
+    var int cursor;
+    var Square current;
+    
+    let cursor = Main.getCursor();
+    let current = b[cursor];
+
+    do current.flag();
     return;
   }
 }

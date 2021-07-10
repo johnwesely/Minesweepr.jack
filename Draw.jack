@@ -3,8 +3,15 @@ class Draw {
   static int cat;
   // functions for drawing squares 
   // x and y are upper right origin points for square
-  function void cursor(int x, int y) {
+  function void clear(int x, int y) {
+    do Screen.setColor(false);
     do Screen.drawRectangle(x, y, (x+19), (y+19));
+    do Screen.setColor(true);
+    return;
+  }
+
+  function void cursor(int x, int y) {
+    do Draw.clear(x, y);
     return;
   }
 
@@ -40,14 +47,14 @@ class Draw {
 
   function void mine(int x, int y) {
     do Draw.clicked(x,y);
-    do Screen.drawRectangle((x+7), (y+3), (x+7), (y+16));
-    do Screen.drawRectangle((x+12), (y+3), (x+12), (7+16));
-    do Screen.drawRectangle((x+3), (y+7), (x+16), (y+7));
-    do Screen.drawRectangle((x+3), (y+12), (x+16), (y+12));
-    do Screen.drawRectangle((x+8), (y+5), (x+11), (y+5));
-    do Screen.drawRectangle((x+8), (y+14), (x+11), (y+14));
-    do Screen.drawRectangle((x+5), (y+8), (x+5), (y+11));
-    do Screen.drawRectangle((x+14), (y+8), (x+14), (y+11));
+    do Screen.drawLine((x+7), (y+3), (x+7), (y+16));
+    do Screen.drawLine((x+12), (y+3), (x+12), (y+16));
+    do Screen.drawLine((x+3), (y+7), (x+16), (y+7));
+    do Screen.drawLine((x+3), (y+12), (x+16), (y+12));
+    do Screen.drawLine((x+8), (y+5), (x+11), (y+5));
+    do Screen.drawLine((x+8), (y+14), (x+11), (y+14));
+    do Screen.drawLine((x+5), (y+8), (x+5), (y+11));
+    do Screen.drawLine((x+14), (y+8), (x+14), (y+11));
     do Screen.drawRectangle((x+9), (y+9), (x+10), (y+10));
     do Screen.drawPixel((x+6), (y+6));
     do Screen.drawPixel((x+13), (y+6));

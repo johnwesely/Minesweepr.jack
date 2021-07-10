@@ -27,12 +27,15 @@ class Square {
     if (mine) {
       do Main.lose();
     }
+    /*
     if (adjacent_mines = 0) {
       let b = (Main.getBoard());
       let b = (Main.safeSquares(b));
       do Main.setBoard(b);
     }
+    */
     let clicked = true;
+    do Draw.clear(x, y);
     return;
   }
 
@@ -86,6 +89,11 @@ class Square {
   
   method void setAdjacentMines(int n) {
     let adjacent_mines = n;
+    return;
+  }
+
+  method void setClicked() {
+    let clicked = true;
     return;
   }
 }

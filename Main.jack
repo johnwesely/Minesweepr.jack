@@ -14,13 +14,14 @@ class Main {
     do Screen.clearScreen();
     let b = Board.new();
     let cursor = 0;
-    
+
+    do b.draw();
+
     while (mines_left > -1) {
       do Main.keyHandler();
       do b.draw();
-      do Sys.wait(200);
+      do Sys.wait(50);
     }
-    
     return;
   }
 
@@ -59,6 +60,10 @@ class Main {
   
   //loses the game
   function void lose() {
+    do b.clickAll();
+    do Sys.wait(3000);
+    do Screen.clearScreen();
+    do Main.main();
     return;
   }
 

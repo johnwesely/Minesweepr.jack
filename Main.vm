@@ -9,6 +9,9 @@ call Board.new 0
 pop static 0
 push constant 0
 pop static 2
+push static 0
+call Board.draw 1
+pop temp 0
 label WHILE_EXP0
 push static 1
 push constant 1
@@ -21,7 +24,7 @@ pop temp 0
 push static 0
 call Board.draw 1
 pop temp 0
-push constant 200
+push constant 50
 call Sys.wait 1
 pop temp 0
 goto WHILE_EXP0
@@ -196,6 +199,16 @@ function Main.safeSquares 0
 push static 0
 return
 function Main.lose 0
+push static 0
+call Board.clickAll 1
+pop temp 0
+push constant 3000
+call Sys.wait 1
+pop temp 0
+call Screen.clearScreen 0
+pop temp 0
+call Main.main 0
+pop temp 0
 push constant 0
 return
 function Main.getMinesLeft 0

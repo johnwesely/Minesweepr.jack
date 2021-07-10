@@ -61,42 +61,75 @@ goto WHILE_EXP0
 label WHILE_END0
 push local 3
 return
-function Board.placeMines 3
+function Board.placeMines 4
 push argument 0
 pop pointer 0
 push constant 0
 pop local 0
 push constant 0
 pop local 1
+push constant 0
+pop local 2
 label WHILE_EXP0
 push local 0
 call Main.getMinesLeft 0
 lt
 not
 if-goto WHILE_END0
-push constant 143
-call Maths.randRange 1
+call Maths.rand 0
+push constant 144
+call Maths.mod 2
 pop local 1
+push local 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+push constant 144
+call Maths.randRange 1
+add
+push constant 144
+call Maths.mod 2
+pop local 1
+push constant 0
+pop local 2
+label IF_FALSE0
+push local 2
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 1
+push constant 69
+call Maths.randRange 1
+add
+push constant 144
+call Maths.mod 2
+pop local 1
+push constant 0
+not
+pop local 2
+label IF_FALSE1
 push local 1
 push this 0
 add
 pop pointer 1
 push that 0
-pop local 2
-push local 2
+pop local 3
+push local 3
 call Square.getMine 1
 not
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push local 2
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 3
 call Square.setMine 1
 pop temp 0
 push local 0
 push constant 1
 add
 pop local 0
-label IF_FALSE0
+label IF_FALSE2
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0
@@ -416,42 +449,257 @@ pop local 3
 push local 2
 call Square.getY 1
 pop local 4
-push local 2
-call Square.getFlagged 1
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
 push local 3
 push local 4
-call Draw.flagged 2
-pop temp 0
-label IF_FALSE0
-push local 2
-call Square.getClicked 1
-not
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push local 3
-push local 4
-call Draw.unclicked 2
-pop temp 0
-label IF_FALSE1
 push local 0
 push local 1
-eq
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push local 3
-push local 4
-call Draw.cursor 2
+push local 2
+call Board.chooseDraw 5
 pop temp 0
-label IF_FALSE2
 push local 0
 push constant 1
 add
 pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Board.chooseDraw 0
+push argument 2
+push argument 3
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 0
+push argument 1
+call Draw.cursor 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push argument 4
+call Square.getFlagged 1
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 0
+push argument 1
+call Draw.flagged 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE1
+push argument 4
+call Square.getClicked 1
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 0
+push argument 1
+call Draw.unclicked 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE2
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getMine 1
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push argument 0
+push argument 1
+call Draw.mine 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE3
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getAdjacentMines 1
+push constant 1
+eq
+and
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push argument 0
+push argument 1
+call Draw.one 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE4
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getAdjacentMines 1
+push constant 2
+eq
+and
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push argument 0
+push argument 1
+call Draw.two 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE5
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getAdjacentMines 1
+push constant 3
+eq
+and
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push argument 0
+push argument 1
+call Draw.three 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE6
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getAdjacentMines 1
+push constant 4
+eq
+and
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push argument 0
+push argument 1
+call Draw.four 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE7
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getAdjacentMines 1
+push constant 5
+eq
+and
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push argument 0
+push argument 1
+call Draw.five 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE8
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getAdjacentMines 1
+push constant 6
+eq
+and
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push argument 0
+push argument 1
+call Draw.six 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE9
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getAdjacentMines 1
+push constant 7
+eq
+and
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push argument 0
+push argument 1
+call Draw.seven 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE10
+push argument 4
+call Square.getClicked 1
+push argument 4
+call Square.getAdjacentMines 1
+push constant 8
+eq
+and
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push argument 0
+push argument 1
+call Draw.eight 2
+pop temp 0
+push constant 0
+return
+label IF_FALSE11
+push argument 4
+call Square.getClicked 1
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push argument 0
+push argument 1
+call Draw.clicked 2
+pop temp 0
+label IF_FALSE12
+push constant 0
+return
+function Board.clickAll 4
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 144
+lt
+not
+if-goto WHILE_END0
+push local 1
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 0
+push local 0
+call Square.getX 1
+pop local 2
+push local 0
+call Square.getY 1
+pop local 3
+push local 2
+push local 3
+call Draw.clear 2
+pop temp 0
+push local 0
+call Square.setClicked 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0
@@ -585,13 +833,35 @@ return
 label IF_FALSE7
 push constant 0
 return
-function Board.click 0
+function Board.click 2
 push argument 0
 pop pointer 0
+call Main.getCursor 0
+pop local 0
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 1
+push local 1
+call Square.click 1
+pop temp 0
 push constant 0
 return
-function Board.flag 0
+function Board.flag 2
 push argument 0
 pop pointer 0
+call Main.getCursor 0
+pop local 0
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+pop local 1
+push local 1
+call Square.flag 1
+pop temp 0
 push constant 0
 return
