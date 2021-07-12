@@ -6,7 +6,8 @@ class Board {
   // creates new board
   constructor Board new() {
     let b = Board.init();
-    do placeMines();
+    //do placeMines();
+    do placeTestMines();
     do adjacentMines();
     do draw();
     return this;
@@ -61,7 +62,21 @@ class Board {
         let i = (i + 1);
       }   
     }
-    
+    return;
+  }
+
+  // places mines from 0th to mines_left'th square for testing
+  method void placeTestMines() {
+    var int i;
+    var Square current;
+
+    let i = 0;
+
+    while (i < Main.getMinesLeft()) {
+      let current = b[i];
+      do current.setMine();
+      let i = (i + 1);
+    }
     return;
   }
 
@@ -151,6 +166,23 @@ class Board {
     return;
   }
   
+  // draws clicked mine
+  method void clickedMine() {
+    var Square current;
+    var int cursor;
+    var int x;
+    var int y;
+    
+    let cursor = Main.getCursor();
+    let current = b[cursor];
+
+    let x = current.getX();
+    let y = current.getY();
+
+    do Draw.clickedMine(x, y);
+    return;
+  }
+
   // choose correct draw function and call it
   function void chooseDraw(int x, int y, int i, int cursor, Square current) {
       if (i = cursor) {
@@ -264,7 +296,7 @@ class Board {
     return;
   }
   
-
+  // calls Square.click for current cursor
   method void click() {
     var int cursor;
     var Square current;
@@ -276,6 +308,7 @@ class Board {
     return;
   }
 
+  // calls Square.flag for current cursor
   method void flag() {
     var int cursor;
     var Square current;

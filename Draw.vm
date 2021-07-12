@@ -401,6 +401,62 @@ push argument 0
 push constant 0
 add
 push argument 1
+push constant 0
+add
+push argument 0
+push constant 19
+add
+push argument 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 0
+add
+push argument 1
+push constant 17
+add
+push argument 0
+push constant 19
+add
+push argument 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 0
+add
+push argument 1
+push constant 0
+add
+push argument 0
+push constant 2
+add
+push argument 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 17
+add
+push argument 1
+push constant 0
+add
+push argument 0
+push constant 19
+add
+push argument 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push argument 0
+push constant 0
+add
+push argument 1
 push constant 19
 add
 push argument 0

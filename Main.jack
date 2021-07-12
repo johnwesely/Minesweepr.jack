@@ -17,11 +17,14 @@ class Main {
 
     do b.draw();
 
-    while (mines_left > -1) {
+    while (mines_left > 0) {
       do Main.keyHandler();
       do b.draw();
       do Sys.wait(50);
     }
+    
+    // Win Game
+
     return;
   }
 
@@ -47,7 +50,7 @@ class Main {
     if (k = 128) {
       do b.click();
     }
-    if (k = 102) {
+    if (k = 70) {
       do b.flag();
     }
     return;
@@ -61,8 +64,16 @@ class Main {
   //loses the game
   function void lose() {
     do b.clickAll();
-    do Sys.wait(3000);
+    do b.clickedMine();
+    let cursor = 144;
+    do b.draw();
+    do Sys.wait(5000);
+    do Output.moveCursor(0, 0);
     do Screen.clearScreen();
+    do Output.printString("Better luck next time bucko");
+    do Sys.wait(2000);
+    do Screen.clearScreen();
+    do Output.moveCursor(0, 0);
     do Main.main();
     return;
   }

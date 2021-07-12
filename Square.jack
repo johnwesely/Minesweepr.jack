@@ -25,7 +25,10 @@ class Square {
   method void click() {
     var Board b;
     if (mine) {
+      do Draw.clear(x, y);
+      do Draw.clickedMine(x, y);
       do Main.lose();
+      
     }
     /*
     if (adjacent_mines = 0) {
@@ -44,19 +47,23 @@ class Square {
     if (flagged & mine) {
       let flagged = false;
       do Main.incMinesLeft();
+      do Draw.clear(x, y);
       return;
     }
     if (flagged) {
       let flagged = false;
+      do Draw.clear(x, y);
       return;
     }
     if (mine) {
       let flagged = true;
       do Main.decMinesLeft();
+      do Draw.clear(x, y);
       return;
     }
     else {
       let flagged = true;
+      do Draw.clear(x, y);
       return;
     }
   }
