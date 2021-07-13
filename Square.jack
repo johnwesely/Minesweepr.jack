@@ -27,7 +27,7 @@ class Square {
     if (mine) {
       do Draw.clear(x, y);
       do Draw.clickedMine(x, y);
-      do Main.lose();
+      do Main.gameOver(false, "Better luck next time bucko!");
       
     }
     /*

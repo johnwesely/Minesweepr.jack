@@ -4,9 +4,21 @@ call Memory.alloc 1
 pop pointer 0
 call Board.init 0
 pop this 0
+call Maths.getSeed 0
+push constant 69
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push pointer 0
 call Board.placeTestMines 1
 pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call Board.placeMines 1
+pop temp 0
+label IF_END0
 push pointer 0
 call Board.adjacentMines 1
 pop temp 0

@@ -46,4 +46,8 @@ class Maths {
         }
         return ret;
     }
+
+  function int getSeed() {
+    return seed;
+  }
 }

@@ -9,6 +9,7 @@ class Main {
 
   // Top level function for controlling minesweeper game
   function void main() {
+    do Main.instructions();
     do Maths.initSeed();
     do Main.initMines();
     do Screen.clearScreen();
@@ -17,13 +18,14 @@ class Main {
 
     do b.draw();
 
+    // main gameplay loop
     while (mines_left > 0) {
       do Main.keyHandler();
       do b.draw();
       do Sys.wait(50);
     }
     
-    // Win Game
+    do Main.gameOver(true, "You are the god of Minesweepr");   
 
     return;
   }
@@ -43,13 +45,16 @@ class Main {
   function void keyHandler() {
     var int k;
     let k = Keyboard.keyPressed();
-
+    
+    // arrow keys
     if ((k > 129) & (k < 134)) {
       do Board.moveCursor(k);
     }
+    // enter key
     if (k = 128) {
       do b.click();
     }
+    // "f" key
     if (k = 70) {
       do b.flag();
     }
@@ -57,24 +62,48 @@ class Main {
   }
 
   // clicks all squares with no adjacent mines recursively 
+  // !!! future feature 
   function Board safeSquares(Board board) {
     return b;
   }
   
-  //loses the game
-  function void lose() {
+  // ends the game and starts a new one
+  function void gameOver(boolean win, string msg) {
     do b.clickAll();
-    do b.clickedMine();
+    if (~win) {
+      do b.clickedMine();
+    }
     let cursor = 144;
     do b.draw();
     do Sys.wait(5000);
     do Output.moveCursor(0, 0);
     do Screen.clearScreen();
-    do Output.printString("Better luck next time bucko");
+    do Output.printString(msg);
     do Sys.wait(2000);
     do Screen.clearScreen();
     do Output.moveCursor(0, 0);
     do Main.main();
+    return;
+  }
+
+  // print game instructions
+  function void instructions() {
+    do Output.printString("Welcome 2 Minesweepr");
+    do Output.println();
+    do Output.println();
+    do Output.printString("Controls:");
+    do Output.println();
+    do Output.printString("Arrow Keys = move cursor");
+    do Output.println();
+    do Output.printString("Enter Key = click square"); 
+    do Output.println();
+    do Output.printString("F Key = place flag");
+    do Output.println();
+    do Output.println();
+    do Output.printString("place a flag on each mine to win, click a mine to lose");
+    do Sys.wait(5000);
+    do Output.moveCursor(0, 0);
+    do Screen.clearScreen();
     return;
   }
 

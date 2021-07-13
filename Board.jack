@@ -6,8 +6,16 @@ class Board {
   // creates new board
   constructor Board new() {
     let b = Board.init();
-    //do placeMines();
-    do placeTestMines();
+    
+    // if 69 is selected as RNG seed, place selected number of mines from
+    // 0th to Main.mines_left'th square on board
+    if (Maths.getSeed() = 69) {
+      do placeTestMines();
+    }
+    else {
+      do placeMines();
+    }
+
     do adjacentMines();
     do draw();
     return this;

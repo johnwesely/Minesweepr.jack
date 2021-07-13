@@ -139,3 +139,6 @@ goto WHILE_EXP1
 label WHILE_END1
 push local 1
 return
+function Maths.getSeed 0
+push static 0
+return
